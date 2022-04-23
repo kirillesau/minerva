@@ -7,6 +7,7 @@ services:
     restart: always
     volumes:
       - ./config/consul/server1.json:/consul/config/server1.json:ro
+      - consul-server1_data:/consul/data
     networks:
       - consul
     ports:
@@ -21,6 +22,7 @@ services:
     restart: always
     volumes:
       - ./config/consul/server2.json:/consul/config/server2.json:ro
+      - consul-server2_data:/consul/data
     networks:
       - consul
     command: "agent -bootstrap-expect=3"
@@ -31,6 +33,7 @@ services:
     restart: always
     volumes:
       - ./config/consul/server3.json:/consul/config/server3.json:ro
+      - consul-server3_data:/consul/data
     networks:
       - consul
     command: "agent -bootstrap-expect=3"
@@ -41,6 +44,7 @@ services:
     restart: always
     volumes:
       - ./config/consul/client.json:/consul/config/client.json:ro
+      - consul-client_data:/consul/data
     networks:
       - consul
     command: "agent"
@@ -73,4 +77,12 @@ networks:
 
 volumes:
   postgres_data:
+    driver: local
+  consul-server1_data:
+    driver: local
+  consul-server2_data:
+    driver: local
+  consul-server3_data:
+    driver: local
+  consul-client_data:
     driver: local
