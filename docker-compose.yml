@@ -45,6 +45,32 @@ services:
       - consul
     command: "agent"
 
+  keycloak:
+    image: quay.io/keycloak/keycloak:legacy
+    restart: always
+    env_file:
+      - ./env/keycloack.env
+      - ./env/keycloack-secrets.env
+    ports:
+      - "8880:8080"
+    depends_on:
+      - keycloak-db
+
+  keycloak-db:
+    image: postgres
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./env/keycloack-db.env
+      - ./env/keycloack-db-secrets.env
+    ports:
+      - "5432:5432"
+
 networks:
   consul:
     driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
