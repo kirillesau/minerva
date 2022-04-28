@@ -71,7 +71,7 @@ services:
     ports:
       - "5432:5432"
   gateway:
-    image: minerva/minerva-gateway:latest
+    image: kirillesau/minerva-gateway:latest
 #    restart: always
     ports:
       - "8690:8080"
