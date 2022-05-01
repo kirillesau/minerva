@@ -14,6 +14,7 @@ Konfigurationen nach dem Start der Anwendung abgerufen werden. Die in diesem Pro
 aus den folgenden Dateien zu entnehmen:
 
 * [minerva-gateway](docs/minerva-gateway-consul-configuration.md)
+* [docker-compose](docs/docker-consul-configuration.md)
 
 ## Disclaimer
 
