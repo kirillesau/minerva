@@ -1,5 +1,4 @@
 version: '3.7'
-
 services:
   consul-server1:
     image: hashicorp/consul:1.11.2
@@ -80,6 +79,16 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     networks:
       - consul
+
+  minerva-absence:
+    image: kirillesau/minerva-absence:latest
+    restart: always
+    environment:
+      - SPRING_CLOUD_CONSUL_HOST=consul-server1
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - consul
+
 networks:
   consul:
     driver: bridge
