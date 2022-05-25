@@ -89,12 +89,25 @@ services:
     networks:
       - consul
 
+  minerva-absence-db:
+    image: postgres
+    restart: always
+    volumes:
+      - postgres_absence_data:/var/lib/postgresql/data
+    env_file:
+      - ./env/minerva-absence-db.env
+      - ./env/minerva-absence-db-secrets.env
+    ports:
+      - "5440:5432"
+
 networks:
   consul:
     driver: bridge
 
 volumes:
   postgres_data:
+    driver: local
+  postgres_absence_data:
     driver: local
   consul-server1_data:
     driver: local
